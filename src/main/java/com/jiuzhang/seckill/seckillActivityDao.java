@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import com.jiuzhang.seckill.SeckillActivity;
 
-public class seckillActivityDao extends BaseDao<SeckillActivity>{
+public class seckillActivityDao{
 
     public static void inertSeckillActivity(SeckillActivity seckillActivity){
         String sql="insert into seckillActivity(name,commodityId,seckillPrice,oldPrice,seckillNumber) values(?,?,?,?)";

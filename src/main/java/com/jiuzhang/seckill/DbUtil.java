@@ -8,7 +8,7 @@ public class DbUtil {
     private String url = "jdbc:mysql://localhost:3306/seckill_jiuzhang?useUnicode=true&characterEncoding=UTF-8";
     private String dbUser = "root" ;
     private String dbPassword = "password" ;
-    private String dbDriver = "com.mysql.cj.jdbc.Driver'" ;
+    private String dbDriver = "com.mysql.cj.jdbc.Driver" ;
     private Connection connection = null ;
 
     public Connection getConnection() {
