@@ -8,17 +8,14 @@ public class DbUtil {
     private String url = "jdbc:mysql://localhost:3306/seckill_jiuzhang?useUnicode=true&characterEncoding=UTF-8";
     private String dbUser = "root" ;
     private String dbPassword = "password" ;
-    private String dbDriver = "com.mysql.jdbc.Driver" ;
+    private String dbDriver = "com.mysql.cj.jdbc.Driver'" ;
     private Connection connection = null ;
 
     public Connection getConnection() {
         try {
             Class.forName(dbDriver) ;
             connection = DriverManager.getConnection(url,dbUser,dbPassword) ;
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
