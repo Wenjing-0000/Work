@@ -44,9 +44,9 @@
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 		<dependency>
-		<groupId>org.mybatis.generator</groupId>
-		<artifactId>mybatis-generator-core</artifactId>
-		<version>1.3.7</version>
+			<groupId>org.mybatis.generator</groupId>
+			<artifactId>mybatis-generator-core</artifactId>
+			<version>1.3.7</version>
 		</dependency>
 
 		<dependency>

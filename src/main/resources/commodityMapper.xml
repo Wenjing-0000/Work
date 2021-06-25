@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wenjing.seckill.db.dao.SeckillCommodityMapper">
+    <select id="getCommodityById" resultType="com.wenjing.seckill.db.po.SeckillCommodity">
+        select * from seckill_commodity where id = #{id}
+    </select>
+    <insert id="addCommodity" >
+        insert into seckill_commodity(id,name,`desc`,price)
+        values(#{id},#{name}, #{desc}, #{price})
+    </insert>
+    <update id="updateCommodity" >
+        update seckill_commodity
+            set name=#{name}, `desc`=#{desc}, price=#{price} where id=#{id}
+    </update>
+    <delete id="deleteCommodity" >
+        delete from seckill_commodity where id=#{id}
+    </delete>
+</mapper>
