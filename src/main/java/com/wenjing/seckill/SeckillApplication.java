@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan(basePackages = {"com.wenjing"})
 @SpringBootApplication
-@MapperScan("com.wenjing.seckill.db.mappers")
+@MapperScan("com.wenjing.seckill.db.dao")
 
 public class SeckillApplication {
 

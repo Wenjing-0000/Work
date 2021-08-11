@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wenjing.seckill.db.dao.SeckillActivityMapper">
+    <sql id="Base_Column_List">
+        id,name,commodity_id,old_price,seckill_price,activity_status,start_time,end_time,
+        total_stock,available_stock,lock_stock
+    </sql>
+    <select id="getActivityById" parameterType="com.wenjing.seckill.db.po.SeckillActivity">
+        select * from seckill_activity where id = #{id}
+    </select>
+    <insert id="addActivity" >
+        insert into seckill_activity(id,name,commodity_id,old_price,seckill_price,activity_status,start_time,end_time,
+        total_stock,available_stock,lock_stock)
+        values(#{id},#{name}, #{commodityId}, #{oldPrice}, #{seckillPrice}, #{activityStatus}, #{startTime}, #{endTime},
+        #{totalStock}, #{availableStock}, #{lockStock})
+    </insert>
+    <update id="updateActivity" >
+        update seckill_activity
+        set name=#{name}, commodity_id=#{commodityId}, old_price=#{oldPrice}, seckill_price=#{seckillPrice},
+        activity_status=#{activityStatus}, start_time=#{startTime}, end_time=#{endTime}, total_stock=#{totalStock},
+        available_stock=#{availableStock}, lock_stock=#{lockStock} where id=#{id}
+    </update>
+    <delete id="deleteActivity" >
+        delete from seckill_activity where id=#{id,jdbcType=BIGINT}
+    </delete>
+    <select id="querySeckillActivitysByStatus" >
+        select
+        <include refid="Base_Column_List"/>
+        from seckill_activity where activity_status = #{id,jdbcType=BIGINT}
+    </select>
+    <update id="lockStock" >
+        update seckill_activity
+        set available_stock = available_stock - 1,
+            lock_stock = lock_stock + 1
+        where id = #{id,jdbcType=BIGINT}
+        and  available_stock > 0
+    </update>
+    <update id="deductStock" >
+        UPDATE seckill_activity
+        set lock_stock = lock_stock - 1
+        where id = #{id,jdbcType=BIGINT}
+        and lock_stock > 0
+    </update>
+    <update id="revertStock" >
+        update seckill_activity
+        set available_stock = available_stock + 1,
+            lock_stock = lock_stock - 1
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

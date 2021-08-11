@@ -1,18 +1,12 @@
 package com.wenjing.seckill;
 
-import com.wenjing.seckill.db.dao.SeckillActivityMapper;
-import com.wenjing.seckill.db.dao.SeckillCommodityMapper;
-import com.wenjing.seckill.db.dao.SeckillOrderMapper;
-import com.wenjing.seckill.db.dao.SeckillUserMapper;
+import com.wenjing.seckill.db.dao.*;
 import com.wenjing.seckill.db.po.SeckillActivity;
-import com.wenjing.seckill.db.po.SeckillCommodity;
-import com.wenjing.seckill.db.po.SeckillOrder;
-import com.wenjing.seckill.db.po.SeckillUser;
 import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
@@ -23,12 +17,6 @@ import java.util.Date;
 
 @SpringBootTest
 class SeckillApplicationTests {
-
-	public SqlSessionFactory getSqlSessionFactory() throws IOException{
-		String resource = "mybatis-config.xml";
-		InputStream inputStream = Resources.getResourceAsStream(resource);
-		return new SqlSessionFactoryBuilder().build(inputStream);
-	}
 
 //	@Test
 //	void contextLoads() throws IOException {
@@ -46,13 +34,16 @@ class SeckillApplicationTests {
 //		}
 //	}
 
+	@Autowired
+	SeckillActivityMapper seckillActivityMapper;
+
 	@Test
 	void contextLoads() throws IOException {
-		SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+//		SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+//
+//		SqlSession openSession = sqlSessionFactory.openSession(true);
 
-		SqlSession openSession = sqlSessionFactory.openSession();
 
-		try{
 			//Commodity
 //			SeckillCommodityMapper mapper = openSession.getMapper(SeckillCommodityMapper.class);
 //			//add
@@ -71,19 +62,23 @@ class SeckillApplicationTests {
 
 			//Activity
 //			SeckillActivityMapper mapper = openSession.getMapper(SeckillActivityMapper.class);
-//			//add
-//			SeckillActivity activity= new SeckillActivity();
-//			activity.setId(13L);
-//			activity.setName("ss");
-//			activity.setCommodityId(323L);
-//			activity.setOldPrice(new BigDecimal(234));
-//			activity.setSeckillPrice(new BigDecimal(199));
-//			activity.setActivityStatus(1);
-//			activity.setStartTime(new Date(2021-1900, Calendar.MAY, 12));
-//			activity.setEndTime(new Date(2021-1900, Calendar.JULY, 12));
-//			activity.setTotalStock(200L);
-//			activity.setAvailableStock(200);
-//			activity.setLockStock(200L);
+			//add
+
+
+			SeckillActivity activity= new SeckillActivity();
+			activity.setId(19L);
+			activity.setName("ss");
+			activity.setCommodityId(323L);
+			activity.setOldPrice(new BigDecimal(234));
+			activity.setSeckillPrice(new BigDecimal(199));
+			activity.setActivityStatus(1);
+			activity.setTotalStock(200L);
+			activity.setAvailableStock(200);
+			activity.setLockStock(200L);
+//
+			seckillActivityMapper.addActivity(activity);
+//
+
 //			mapper.addActivity(activity);
 //			openSession.commit();
 //
@@ -126,7 +121,7 @@ class SeckillApplicationTests {
 
 
 			//User
-			SeckillUserMapper mapper = openSession.getMapper(SeckillUserMapper.class);
+//			SeckillUserMapper mapper = openSession.getMapper(SeckillUserMapper.class);
 //			//add
 //			SeckillUser user= new SeckillUser();
 //			user.setId(1L);
@@ -153,9 +148,6 @@ class SeckillApplicationTests {
 //			mapper.getUserById(1);
 //			openSession.commit();
 
-		}finally {
-			openSession.close();
-		}
 
 
 	}

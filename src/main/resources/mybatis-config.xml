@@ -15,9 +15,9 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="commodityMapper.xml"/>
-        <mapper resource="activityMapper.xml"/>
-        <mapper resource="orderMapper.xml"/>
-        <mapper resource="userMapper.xml"/>
+        <mapper resource="mappers/commodityMapper.xml"/>
+        <mapper resource="mappers/activityMapper.xml"/>
+        <mapper resource="mappers/orderMapper.xml"/>
+        <mapper resource="mappers/userMapper.xml"/>
     </mappers>
 </configuration>
